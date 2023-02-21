@@ -354,3 +354,45 @@ bool TGAImage::scale(int w, int h) {
 	height = h;
 	return true;
 }
+
+TGAImage* tga_create(int w, int h, int bpp) {
+	TGAImage image(w, h, bpp);
+	return &image;
+}
+
+bool read_tga_file(TGAImage* image, const char* filename) {
+	return image->read_tga_file(filename);
+}
+bool write_tga_file(TGAImage* image, const char* filename, bool rle = true) {
+	return image->write_tga_file(filename, rle);
+}
+bool flip_horizontally(TGAImage* image) {
+	return image->flip_horizontally();
+}
+bool flip_vertically(TGAImage* image) {
+	return image->flip_vertically();
+}
+bool scale(TGAImage* image, int w, int h) {
+	return image->scale(w, h);
+}
+TGAColor* get(TGAImage* image, int x, int y) {
+	return &(image->get(x, y));
+}
+bool set(TGAImage* image, int x, int y, TGAColor* c) {
+	return image->set(x, y, *c);
+}
+int get_width(TGAImage* image) {
+	return image->get_width();
+}
+int get_height(TGAImage* image) {
+	return image->get_height();
+}
+int get_bytespp(TGAImage* image) {
+	return image->get_bytespp();
+}
+unsigned char* buffer(TGAImage* image) {
+	return image->buffer();
+}
+void clear(TGAImage* image) {
+	image->clear();
+}
