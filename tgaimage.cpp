@@ -355,44 +355,47 @@ bool TGAImage::scale(int w, int h) {
 	return true;
 }
 
-TGAImage* tga_create(int w, int h, int bpp) {
-	TGAImage image(w, h, bpp);
-	return &image;
+static TGAImage* tga_create(int w, int h, int bpp) {
+	TGAImage* result = new TGAImage;
+	*result = TGAImage(w, h, bpp);
+	return result;
 }
 
-bool read_tga_file(TGAImage* image, const char* filename) {
+static bool read_tga_file(TGAImage* image, const char* filename) {
 	return image->read_tga_file(filename);
 }
-bool write_tga_file(TGAImage* image, const char* filename, bool rle = true) {
+static bool write_tga_file(TGAImage* image, const char* filename, bool rle) {
 	return image->write_tga_file(filename, rle);
 }
-bool flip_horizontally(TGAImage* image) {
+static bool flip_horizontally(TGAImage* image) {
 	return image->flip_horizontally();
 }
-bool flip_vertically(TGAImage* image) {
+static bool flip_vertically(TGAImage* image) {
 	return image->flip_vertically();
 }
-bool scale(TGAImage* image, int w, int h) {
+static bool scale(TGAImage* image, int w, int h) {
 	return image->scale(w, h);
 }
-TGAColor* get(TGAImage* image, int x, int y) {
-	return &(image->get(x, y));
+static TGAColor* get(TGAImage* image, int x, int y) {
+	TGAColor* result = new TGAColor;
+	*result = image->get(x, y);
+	return result;
 }
-bool set(TGAImage* image, int x, int y, TGAColor* c) {
+static bool set(TGAImage* image, int x, int y, TGAColor* c) {
 	return image->set(x, y, *c);
 }
-int get_width(TGAImage* image) {
+static int get_width(TGAImage* image) {
 	return image->get_width();
 }
-int get_height(TGAImage* image) {
+static int get_height(TGAImage* image) {
 	return image->get_height();
 }
-int get_bytespp(TGAImage* image) {
+static int get_bytespp(TGAImage* image) {
 	return image->get_bytespp();
 }
-unsigned char* buffer(TGAImage* image) {
+static unsigned char* buffer(TGAImage* image) {
 	return image->buffer();
 }
-void clear(TGAImage* image) {
+static void clear(TGAImage* image) {
 	image->clear();
 }

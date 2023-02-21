@@ -94,18 +94,31 @@ public:
 };
 
 
-static TGAImage* tga_create(int w, int h, int bpp);
-static bool read_tga_file(TGAImage* image, const char* filename);
-static bool write_tga_file(TGAImage* image, const char* filename, bool rle = true);
-static bool flip_horizontally(TGAImage* image);
-static bool flip_vertically(TGAImage* image);
-static bool scale(TGAImage* image,int w, int h);
-static TGAColor* get(TGAImage* image, int x, int y);
-static bool set(TGAImage* image, int x, int y, TGAColor* c);
-static int get_width(TGAImage* image);
-static int get_height(TGAImage* image);
-static int get_bytespp(TGAImage* image);
-static unsigned char* buffer(TGAImage* image);
-static void clear(TGAImage* image);
+
+#define DllExport   __declspec( dllexport )
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+	DllExport TGAImage* tga_create(int w, int h, int bpp);
+	DllExport	bool read_tga_file(TGAImage* image, const char* filename);
+	DllExport bool write_tga_file(TGAImage* image, const char* filename, bool rle = true);
+	DllExport bool flip_horizontally(TGAImage* image);
+	DllExport bool flip_vertically(TGAImage* image);
+	DllExport bool scale(TGAImage* image, int w, int h);
+	DllExport TGAColor* get(TGAImage* image, int x, int y);
+	DllExport bool set(TGAImage* image, int x, int y, TGAColor* c);
+	DllExport int get_width(TGAImage* image);
+	DllExport int get_height(TGAImage* image);
+	DllExport int get_bytespp(TGAImage* image);
+	DllExport unsigned char* buffer(TGAImage* image);
+	DllExport void clear(TGAImage* image);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //__IMAGE_H__
