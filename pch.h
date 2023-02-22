@@ -10,5 +10,7 @@
 // 添加要在此处预编译的标头
 #include "framework.h"
 #include "tgaimage.h"
+#include "model.h"
+#include "Export.h"
 
 #endif //PCH_H
